@@ -82,5 +82,3 @@ if check:
             window.speechSynthesis.speak(msg);
             </script>
         """, height=0)
-
-        st.caption("This is an ML-based prediction for educational purposes, not absolute proof of truth.")
