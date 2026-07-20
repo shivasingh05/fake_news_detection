@@ -45,16 +45,11 @@ def clean_text(text):
     text = re.sub(r'\s+', ' ', text).strip()
     return text
 
-# ---------- Header ----------
-st.title("Fake News Detector")
-
-st.divider()
-
 # ---------- Input Section ----------
 st.subheader("📋 Paste News Article Below")
 news_input = st.text_area("", height=180, placeholder="Paste any news headline or article text here...")
 
-col1, col2, col3 = st.columns([1,1,1])
+col1, col2, col3 = st.columns([1, 1, 1])
 with col2:
     check = st.button("🔍 Analyze News", use_container_width=True)
 
@@ -72,14 +67,20 @@ if check:
             confidence = model.predict_proba(vec).max() * 100
 
         if prediction == 1:
-            st.success(f"### ✅ This news looks REAL")
+            result_text = "This news looks REAL"
+            st.success(f"### ✅ {result_text}")
             st.metric("Confidence Score", f"{confidence:.1f}%")
         else:
-            st.error(f"### ❌ This news looks FAKE")
+            result_text = "This news looks FAKE"
+            st.error(f"### ❌ {result_text}")
             st.metric("Confidence Score", f"{confidence:.1f}%")
 
-        st.caption("⚠️ This is an ML-based prediction for educational purposes, not absolute proof of truth.")
+        speech_text = f"{result_text}. Confidence {confidence:.0f} percent."
+        st.components.v1.html(f"""
+            <script>
+            var msg = new SpeechSynthesisUtterance("{speech_text}");
+            window.speechSynthesis.speak(msg);
+            </script>
+        """, height=0)
 
-# ---------- Footer ----------
-st.divider()
-
+        st.caption("This is an ML-based prediction for educational purposes, not absolute proof of truth.")
