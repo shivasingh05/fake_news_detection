@@ -46,8 +46,7 @@ def clean_text(text):
     return text
 
 # ---------- Header ----------
-st.markdown('<p class="main-title">🛡️ NewsCheck AI</p>', unsafe_allow_html=True)
-st.markdown('<p class="subtitle">Machine Learning based Fake News Detector — Powered by TF-IDF + Logistic Regression</p>', unsafe_allow_html=True)
+st.title("Fake News Detector")
 
 st.divider()
 
