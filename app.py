@@ -83,4 +83,4 @@ if check:
 
 # ---------- Footer ----------
 st.divider()
-st.caption("Built with ❤️ using Python, Scikit-learn & Streamlit | ML Mini Project")
+
